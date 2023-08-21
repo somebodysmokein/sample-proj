@@ -1,31 +1,27 @@
 import { Text, View, StyleSheet, Image } from 'react-native';
+import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 
 export default function AssetExample() {
+  let [fontsLoaded, fontError] = useFonts({
+    Inter_900Black,
+  });
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.paragraph}>
-        Local files and assets can be imported by dragging and dropping them into the editor
-      </Text>
-      <Image style={styles.logo} source={require('../assets/snack-icon.png')} />
+      <Text style={{ fontFamily: 'Inter_900Black', fontSize: 40 }}>Inter Black</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
+    flex: 1,
     justifyContent: 'center',
-    padding: 24,
+    alignItems: 'center',
   },
-  paragraph: {
-    margin: 24,
-    marginTop: 0,
-    fontSize: 14,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  logo: {
-    height: 128,
-    width: 128,
-  }
 });
+ 
